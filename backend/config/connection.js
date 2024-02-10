@@ -1,10 +1,14 @@
 const { Sequelize } = require('sequelize');
+const { database, username, password, host } = require('./configVariables');
 
-const sequelize = new Sequelize('memegame','postgres','postgres', {
-    host: 'localhost',
+const sequelize = new Sequelize(database, username, password, {
+    host: host,
     dialect: 'postgres',
+    dialectOptions: {
+        ssl: true
+    },
     logging: false
-})
+});
 
 const testConnection = async () => {
     try {
